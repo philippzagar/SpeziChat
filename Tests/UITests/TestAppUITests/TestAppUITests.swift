@@ -20,6 +20,6 @@ class TestAppUITests: XCTestCase {
     func testTemplatePackage() throws {
         let app = XCUIApplication()
         app.launch()
-        XCTAssert(app.staticTexts["Stanford University"].waitForExistence(timeout: 0.1))
+        XCTAssert(app.staticTexts["SpeziChat"].waitForExistence(timeout: 1))
     }
 }

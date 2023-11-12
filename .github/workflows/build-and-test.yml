@@ -1,5 +1,5 @@
 #
-# This source file is part of the TemplatePackage open source project
+# This source file is part of the Stanford Spezi open source project
 #
 # SPDX-FileCopyrightText: 2022 Stanford University and the project authors (see CONTRIBUTORS.md)
 #
@@ -20,25 +20,8 @@ jobs:
     name: Build and Test Swift Package iOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
-      scheme: TemplatePackage
-      artifactname: TemplatePackage.xcresult
-  packagewatchos:
-    name: Build and Test Swift Package watchOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    with:
-      scheme: TemplatePackage
-      resultBundle: TemplatePackageWatchOS.xcresult
-      destination: 'platform=watchOS Simulator,name=Apple Watch Series 8 (45mm)'
-      artifactname: TemplatePackageWatchOS.xcresult
-  packagevisionos:
-    name: Build and Test Swift Package visionOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    with:
-      xcodeversion: latest
-      scheme: TemplatePackage
-      resultBundle: TemplatePackageVisionOS.xcresult
-      destination: 'platform=visionOS Simulator,name=Apple Vision Pro'
-      artifactname: TemplatePackageVisionOS.xcresult
+      scheme: SpeziChat
+      artifactname: SpeziChat.xcresult
   ios:
     name: Build and Test iOS
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
@@ -70,7 +53,7 @@ jobs:
     with:
       codeql: true
       xcodeversion: '14.3.1'
-      scheme: TemplatePackage
+      scheme: SpeziChat
     permissions:
       security-events: write
       actions: read
@@ -79,4 +62,4 @@ jobs:
     needs: [packageios, packagewatchos, packagevisionos, ios, ipados, watchos]
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
-      coveragereports: TemplatePackage.xcresult TemplatePackageWatchOS.xcresult TemplatePackageVisionOS.xcresult TestApp.xcresult TestAppiPadOS.xcresult TestAppWatchApp.xcresult
+      coveragereports: SpeziChat.xcresult TestApp.xcresult TestAppiPadOS.xcresult TestAppWatchApp.xcresult

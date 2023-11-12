@@ -1,4 +1,4 @@
-// swift-tools-version:5.8
+// swift-tools-version:5.9
 
 //
 // This source file is part of the TemplatePackage open source project
@@ -12,22 +12,28 @@ import PackageDescription
 
 
 let package = Package(
-    name: "TemplatePackage",
+    name: "SpeziChat",
+    defaultLocalization: "en",
     platforms: [
-        .iOS(.v16),
-        .watchOS(.v9)
+        .iOS(.v17)
     ],
     products: [
-        .library(name: "TemplatePackage", targets: ["TemplatePackage"])
+        .library(name: "SpeziChat", targets: ["SpeziChat"])
+    ],
+    dependencies: [
+        .package(url: "https://github.com/philippzagar/SpeziSpeech", branch: "feat/init-setup"),    // .upToNextMinor(from: "0.1.0")
     ],
     targets: [
         .target(
-            name: "TemplatePackage"
+            name: "SpeziChat",
+            dependencies: [
+                .product(name: "SpeziSpeechRecognizer", package: "SpeziSpeech")
+            ]
         ),
         .testTarget(
-            name: "TemplatePackageTests",
+            name: "SpeziChatTests",
             dependencies: [
-                .target(name: "TemplatePackage")
+                .target(name: "SpeziChat")
             ]
         )
     ]
