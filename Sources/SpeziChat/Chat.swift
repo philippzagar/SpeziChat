@@ -6,4 +6,5 @@
 // SPDX-License-Identifier: MIT
 //
 
+/// A ``Chat`` includes an ordered array of ``ChatEntity``s
 public typealias Chat = [ChatEntity]
