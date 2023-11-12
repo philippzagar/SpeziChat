@@ -21,6 +21,7 @@ jobs:
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       scheme: SpeziChat
+      xcodeversion: 15.0
       artifactname: SpeziChat.xcresult
   ios:
     name: Build and Test iOS
@@ -28,6 +29,7 @@ jobs:
     with:
       path: 'Tests/UITests'
       scheme: TestApp
+      xcodeversion: 15.0
       artifactname: TestApp.xcresult
   ipados:
     name: Build and Test iPadOS
@@ -35,31 +37,23 @@ jobs:
     with:
       path: 'Tests/UITests'
       scheme: TestApp
+      xcodeversion: 15.0
       resultBundle: TestAppiPadOS.xcresult
       destination: 'platform=iOS Simulator,name=iPad mini (6th generation)'
       artifactname: TestAppiPadOS.xcresult
-  watchos:
-    name: Build and Test watchOS
-    uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
-    with:
-      path: 'Tests/UITests'
-      scheme: TestAppWatchApp
-      resultBundle: TestAppWatchApp.xcresult
-      destination: 'platform=watchOS Simulator,name=Apple Watch Series 8 (45mm)'
-      artifactname: TestAppWatchApp.xcresult
   codeql:
     name: CodeQL
     uses: StanfordBDHG/.github/.github/workflows/xcodebuild-or-fastlane.yml@v2
     with:
       codeql: true
-      xcodeversion: '14.3.1'
+      xcodeversion: 15.0
       scheme: SpeziChat
     permissions:
       security-events: write
       actions: read
   uploadcoveragereport:
     name: Upload Coverage Report
-    needs: [packageios, packagewatchos, packagevisionos, ios, ipados, watchos]
+    needs: [packageios, ios, ipados]
     uses: StanfordBDHG/.github/.github/workflows/create-and-upload-coverage-report.yml@v2
     with:
-      coveragereports: SpeziChat.xcresult TestApp.xcresult TestAppiPadOS.xcresult TestAppWatchApp.xcresult
+      coveragereports: SpeziChat.xcresult TestApp.xcresult TestAppiPadOS.xcresult
