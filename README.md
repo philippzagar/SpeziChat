@@ -33,6 +33,9 @@ The `SpeziChat` module provides views that can be used to implement chat-based u
 You need to add the Spezi Chat Swift package to
 [your app in Xcode](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app#) or
 [Swift package](https://developer.apple.com/documentation/xcode/creating-a-standalone-swift-package-with-xcode#Add-a-dependency-on-another-Swift-package).
+
+> [!IMPORTANT]  
+> If your application is not yet configured to use Spezi, follow the [Spezi setup article](https://swiftpackageindex.com/stanfordspezi/spezi/documentation/spezi/initial-setup) to setup the core Spezi infrastructure.
    
 ## Examples
 
@@ -128,8 +131,10 @@ struct MessageInputTestView: View {
 
 [HealthGPT](https://github.com/StanfordBDHG/HealthGPT) and [LLMonFHIR](https://github.com/StanfordBDHG/LLMonFHIR) provide a great starting points and examples using the `SpeziChat` module.
 
+
 ## License
 This project is licensed under the MIT License. See [Licenses](https://github.com/StanfordSpezi/SpeziChat/tree/main/LICENSES) for more information.
+
 
 ## Contributors
 This project is developed as part of the Stanford Byers Center for Biodesign at Stanford University.
