@@ -12,7 +12,7 @@ import SwiftUI
 
 struct ChatTestView: View {
     @State private var chat: Chat = [
-        ChatEntity(role: .assistant, content: "Assistant Message!"),
+        ChatEntity(role: .assistant, content: "Assistant Message!")
     ]
     
     
