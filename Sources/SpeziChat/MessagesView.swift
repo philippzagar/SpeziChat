@@ -10,7 +10,25 @@ import Combine
 import SwiftUI
 
 
-/// Displays the content of a `ChatEntity` message in a message bubble
+/// Displays a ``Chat`` containing multiple ``ChatEntity``s with different ``ChatEntity/Role``s in a typical chat-like fashion.
+/// The `View` automatically scrolls down to the newest message that is added to the passed ``Chat`` SwiftUI `Binding`.
+///
+/// Depending on the parameters, ``ChatEntity``s with certain ``ChatEntity/Role``s are hidden from the `View`.
+/// The ``MessagesView`` is shifted from the bottom by a configurable parameter which is important for input fields, e.g., ``MessageInputView``.
+///
+///
+/// ```swift
+/// struct MessagesViewTestView: View {
+///     @State private var chat: Chat = [
+///         ChatEntity(role: .user, content: "User Message!"),
+///         ChatEntity(role: .assistant, content: "Assistant Message!")
+///     ]
+///
+///     var body: some View {
+///         MessagesView($chat)
+///     }
+/// }
+/// ```
 public struct MessagesView: View {
     private static let bottomSpacerIdentifier = "Bottom Spacer"
     

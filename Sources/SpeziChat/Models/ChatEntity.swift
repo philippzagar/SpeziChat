@@ -9,7 +9,10 @@
 import Foundation
 
 
+/// Represents the basic building block of a Spezi ``Chat``.
+/// It consists of a ``ChatEntity/Role`` property as well as a `String`-based content property.
 public struct ChatEntity: Codable, Equatable {
+    /// Indicates which ``ChatEntity/Role`` is associated with a ``ChatEntity``.
     public enum Role: String, Codable, Equatable {
         case system
         case assistant
@@ -17,16 +20,20 @@ public struct ChatEntity: Codable, Equatable {
         case function
     }
     
+    /// Indicates if a ``ChatEntity`` is displayed in a leading or trailing position within a SwiftUI `View`.
     enum Alignment {
         case leading
         case trailing
     }
     
     
+    /// ``ChatEntity/Role`` associated with the ``ChatEntity``.
     public let role: Role
+    /// `String`-based content of the ``ChatEntity``.
     public let content: String
     
     
+    /// Dependent on the ``ChatEntity/Role``, display a ``ChatEntity`` in a leading or trailing position.
     var alignment: Alignment {
         switch self.role {
         case .user:
@@ -37,6 +44,10 @@ public struct ChatEntity: Codable, Equatable {
     }
     
     
+    /// Creates a ``ChatEntity`` which is the building block of a Spezi ``Chat``.
+    /// - Parameters:
+    ///    - role: ``ChatEntity/Role`` associated with the ``ChatEntity``.
+    ///    - content: `String`-based content of the ``ChatEntity``.
     public init(role: Role, content: String) {
         self.role = role
         self.content = content

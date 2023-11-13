@@ -12,12 +12,40 @@ import SpeziSpeechRecognizer
 import SwiftUI
 
 
-/// Displays a textfield to append a message to a chat.
+/// A reusable SwiftUI `View` to handle text-based or speech-based user input.
+/// The provided message is attached to the passed ``Chat`` via a SwiftUI `Binding`.
+///
+/// The input can be either typed out via the iOS keyboard or provided as voice input and transcribed into written text.
+///
+/// One can get the size of the typed message, which can vary dependent on the message length, via the ``MessageInputViewHeightKey`` SwiftUI PreferenceKey`.
+///
+///
+/// ```swift
+/// struct MessageInputTestView: View {
+///     @State private var chat: Chat = []
+///     @State private var disableInput = false
+///     /// Indicates the height of the input message field, necessary for properly shifting
+///     /// other view content.
+///     @State private var messageInputHeight: CGFloat = 0
+///
+///     var body: some View {
+///         VStack {
+///             Spacer()
+///             MessageInputView($chat, messagePlaceholder: "TestMessage")
+///                 .disabled(disableInput)
+///                 /// Get the height of the `MessageInputView` via a SwiftUI `PreferenceKey`
+///                 .onPreferenceChange(MessageInputViewHeightKey.self) { newValue in
+///                     messageInputHeight = newValue
+///                 }
+///         }
+///     }
+/// }
+/// ```
 public struct MessageInputView: View {
-    private let messagePlaceholder: String
-    @State private var speechRecognizer = SpeechRecognizer()
-    
     @Binding private var chat: Chat
+    private let messagePlaceholder: String
+    
+    @State private var speechRecognizer = SpeechRecognizer()
     @State private var message: String = ""
     @State private var messageViewHeight: CGFloat = 0
     
@@ -74,6 +102,7 @@ public struct MessageInputView: View {
             label: {
                 Image(systemName: "arrow.up.circle.fill")
                     .accessibilityLabel(String(localized: "SEND_MESSAGE", bundle: .module))
+                    .accessibilityIdentifier("sendMessageButton")
                     .font(.title)
                     .foregroundColor(
                         message.isEmpty ? Color(.systemGray5) : .accentColor

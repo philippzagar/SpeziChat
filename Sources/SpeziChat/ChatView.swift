@@ -9,12 +9,29 @@
 import SwiftUI
 
 
-/// A view to display an OpenAI-based chat view.
+/// Provides a basic reusable chat view which includes a message input field. The input can be either typed out via the iOS keyboard or provided as voice input and transcribed into written text.
+///
+/// The actual content of the ``ChatView`` is defined by a ``Chat``, which contains an ordered array of ``ChatEntity``s representing the individual messages within the ``ChatView``.
+/// The ``Chat`` is passed to the ``ChatView`` as a SwiftUI `Binding`, which enables modification of the ``Chat`` from outside of the view, for example via a SwiftUI `.onChange()` `View` modifier.
+///
+///
+/// ```swift
+/// struct ChatTestView: View {
+///     @State private var chat: Chat = [
+///         ChatEntity(role: .assistant, content: "Assistant Message!")
+///     ]
+///
+///     var body: some View {
+///         ChatView($chat)
+///             .navigationTitle("SpeziChat")
+///     }
+/// }
+/// ```
 public struct ChatView: View {
-    let messagePlaceholder: String?
-    
     @Binding var chat: Chat
     @Binding var disableInput: Bool
+    let messagePlaceholder: String?
+    
     @State var messageInputHeight: CGFloat = 0
     
     

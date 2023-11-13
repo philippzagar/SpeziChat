@@ -9,9 +9,27 @@
 import SwiftUI
 
 
-/// Displays the content of a `Chat` message in a message bubble
+/// A reusable SwiftUI `View` to display the contents of a ``ChatEntity`` within a typical chat message bubble. This bubble is properly aligned according to the associated ``ChatEntity/Role``.
+///
+/// Messages with specific system ``ChatEntity/Role``s are hidden. Those ``ChatEntity/Role``s are configurable via a parameter.
+/// 
+///
+/// ```swift
+/// struct MessageViewTestView: View {
+///     var body: some View {
+///         VStack {
+///             MessageView(ChatEntity(role: .user, content: "User Message!"))
+///             MessageView(ChatEntity(role: .assistant, content: "Assistant Message!"))
+///             MessageView(ChatEntity(role: .system, content: "System Message (hidden)!"))
+///         }
+///             .padding()
+///     }
+/// }
+/// ```
 public struct MessageView: View {
+    /// Contains default values of configurable properties of the ``MessageView``.
     public enum Defaults {
+        /// ``ChatEntity`` ``ChatEntity/Role``s that should be hidden by default
         public static let hideMessagesWithRoles: Set<ChatEntity.Role> = [.system, .function]
     }
     
