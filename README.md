@@ -33,7 +33,7 @@ The `SpeziChat` module provides views that can be used to implement chat-based u
 You need to add the Spezi Chat Swift package to
 [your app in Xcode](https://developer.apple.com/documentation/xcode/adding-package-dependencies-to-your-app#) or
 [Swift package](https://developer.apple.com/documentation/xcode/creating-a-standalone-swift-package-with-xcode#Add-a-dependency-on-another-Swift-package).
-
+   
 ## Examples
 
 ### Chat View
